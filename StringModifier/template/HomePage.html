@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+
+{%  block content %}
+
+
+
+<div class="Formstyle" style="margin:0 40px;" >
+    <h1  style="text-align: center; margin: 20px 0;"> Welcome To String Modifier </h1>
+    <form  action="/stringoperation/" method="POST"> {% csrf_token %}
+        <div class="mb-3" style="margin: 20px 0;">
+            <div class="form-floating">
+                <textarea name="InputText" class="form-control" placeholder="Leave a comment here" value ="hhhh" id="floatingTextarea2" style="height: 200px">{{input}}</textarea>
+                <label for="floatingTextarea2">Enter your paragraph</label>
+                
+              </div>
+        </div>
+
+        <div class="form-check form-switch" style="margin: 20px 0px;" >
+            <input class="form-check-input" name ="RemovePunctution" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remove Punction</label>
+          </div>
+
+          <div class="form-check form-switch" style="margin: 20px 0px;" >
+            <input class="form-check-input" name ="CaptilizeFirst" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Captilize First</label>
+          </div>
+          <div class="form-check form-switch" style="margin: 20px 0px;" >
+            <input class="form-check-input" name ="NewLineRemover" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">New Line Remover</label>
+          </div>
+          <div class="form-check form-switch" style="margin: 20px 0px;" >
+            <input class="form-check-input" name ="SpaceRemover" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Space Remover</label>
+          </div>
+          <div class="form-check form-switch" style="margin: 20px 0px;" >
+            <input class="form-check-input" name ="CharCount" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">CharCount</label>
+          </div>
+          
+
+          
+        <button  type="submit" class="btn btn-primary" style="margin: 20px 0px;" >Apply Changes</button>
+      </form>
+
+
+{% if flag == True %}
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" id ="button_id" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    View Result
+  </button>
+  
+  <script type="text/javascript">
+
+    window.onload = function () {
+        // Simulate a button click when the page loads
+        document.getElementById("button_id").click();
+    };
+
+</script>
+ 
+  </div>
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modified String</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <pre>{{Result}}
+            
+            {% if CharCount > 0 %}
+            <b>Count Of Char digit is : {{CharCount}}</b>
+            {% endif %}
+            
+
+          </pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  
+
+ 
+{% endif %}
+
+</div>
+{% endblock %}
